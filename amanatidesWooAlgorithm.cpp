@@ -3,6 +3,7 @@
 
 // Macro defined to avoid unnecessary checks with NaNs when using std::max
 #define MAX(a,b) ((a > b ? a : b))
+#define MIN(a,b) ((a < b ? a : b))
 
 // Uses the improved version of Smit's algorithm to determine if the given ray will intersect
 // the grid between tMin and tMax. This version causes an additional efficiency penalty,
@@ -57,7 +58,7 @@ void amanatidesWooAlgorithm(const Ray& ray, const Grid3D& grid, value_type t0, v
     if (!ray_intersects_grid) return;
 
     tMin = MAX(tMin, t0);
-    tMax = MAX(tMax, t1);
+    tMax = MIN(tMax, t1);
     const BoundVec3 ray_start = ray.origin() + ray.direction() * tMin;
     const BoundVec3 ray_end = ray.origin() + ray.direction() * tMax;
 
